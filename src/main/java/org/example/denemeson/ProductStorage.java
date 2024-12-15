@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductStorage {
-    private static final String FILE_PATH = "/Users/mehmetsa00/Downloads/AlisverisSepetiY-netimi-main/src/main/resources/org/example/denemeson/productStorage/ProductStorage.txt";
+    private static final String FILE_PATH = "/Users/mehmetsa00/Documents/GitHub/AlisverisSepetiYonetimi-main/src/main/resources/org/example/denemeson/productStorage/ProductStorage.txt";
 
     //Ürünleri dosyadan oku
     public static void urunOkuma() {

@@ -6,8 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class LoginManager {
-    private static final String ADMIN_FILE_PATH = "/Users/mehmetsa00/Downloads/AlisverisSepetiY-netimi-main/src/main/resources/org/example/denemeson/kullanıcıBilgileri/admin.txt";
-    private static final String EMPLOYEE_FILE_PATH = "/Users/mehmetsa00/Downloads/AlisverisSepetiY-netimi-main/src/main/resources/org/example/denemeson/kullanıcıBilgileri/employee.txt";
+    private static final String ADMIN_FILE_PATH = "/Users/mehmetsa00/Documents/GitHub/AlisverisSepetiYonetimi-main/src/main/resources/org/example/denemeson/kullanıcıBilgileri/admin.txt";
+    private static final String EMPLOYEE_FILE_PATH = "/Users/mehmetsa00/Documents/GitHub/AlisverisSepetiYonetimi-main/src/main/resources/org/example/denemeson/kullanıcıBilgileri/employee.txt";
     //Admin doğrulama methodu
     public static boolean adminDoğrulama(String username, String password) {
         try (BufferedReader reader = new BufferedReader(new FileReader(ADMIN_FILE_PATH))){
