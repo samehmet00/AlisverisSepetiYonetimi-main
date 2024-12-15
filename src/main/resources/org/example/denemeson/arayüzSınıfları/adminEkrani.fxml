@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.denemeson.AdminEkranıController">
+   <children>
+      <AnchorPane fx:id="adminMain_Form" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane layoutX="383.0" layoutY="206.0" prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="46.0" prefWidth="1081.0" styleClass="semi-top-form" stylesheets="@../adminEmployeeArayuzu.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="-3.5" layoutY="-3.0" prefHeight="52.0" prefWidth="1105.0" styleClass="top-form" stylesheets="@../adminEmployeeArayuzu.css" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-4.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
+                           <children>
+                              <Button fx:id="çıkışBTN" layoutX="1060.0" layoutY="2.0" mnemonicParsing="false" onAction="#close" prefHeight="24.0" prefWidth="43.0" styleClass="close" stylesheets="@../adminEmployeeArayuzu.css" text="X" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="2.0" />
+                              <Button fx:id="pencereyiKapatBTN" layoutX="1031.0" layoutY="2.0" mnemonicParsing="false" onAction="#aşağıAl" prefHeight="24.0" prefWidth="30.0" styleClass="minimize" stylesheets="@../adminEmployeeArayuzu.css" text="−" AnchorPane.topAnchor="2.0" />
+                              <Label layoutX="14.0" layoutY="10.0" text="🏪Super Market ⏐ Yönetici Sayfası">
+                                 <font>
+                                    <Font name="System Bold" size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="554.0" prefWidth="194.0" styleClass="nav-form" stylesheets="@../adminEmployeeArayuzu.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label layoutX="24.0" layoutY="100.0" prefHeight="37.0" prefWidth="152.0" text="Hoşgeldiniz," textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="26.0" />
+                           </font>
+                        </Label>
+                        <Line endX="84.0" fill="BLACK" layoutX="99.0" layoutY="203.0" startX="-85.0" />
+                        <Button fx:id="adminArayüzü_solPencere_ürünEkle" layoutX="8.0" layoutY="242.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="ekleUrun-btn-default" stylesheets="@../adminEmployeeArayuzu.css" text="📦 ⏐ Ürün Ekle" textFill="#187c90" />
+                        <Button fx:id="geriÇıkış" layoutX="1.0" layoutY="526.0" mnemonicParsing="false" onAction="#geriÇıkış" prefHeight="25.0" prefWidth="37.0" stylesheets="@../adminEmployeeArayuzu.css" text="↵">
+                           <font>
+                              <Font name="Tahoma Bold" size="11.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="logout-btn" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </Button>
+                        <Label fx:id="adminAdi" layoutX="24.0" layoutY="142.0" text="Admin" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="60.0" layoutY="14.0" text="👤">
+                           <font>
+                              <Font size="77.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="40.0" layoutY="532.0" prefHeight="15.0" prefWidth="49.0" text="Çıkış yap" textFill="WHITE" />
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="productEkleme_form" layoutX="294.0" layoutY="58.0" prefHeight="553.6" prefWidth="900.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="14.0" layoutY="9.0" prefHeight="534.0" prefWidth="237.0" stylesheets="@../adminEmployeeArayuzu.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <Label layoutX="33.0" layoutY="34.0" text="Product ID:" AnchorPane.rightAnchor="140.0" />
+                                    <Label layoutX="24.0" layoutY="76.0" text="Stok:" AnchorPane.rightAnchor="140.0" />
+                                    <Label layoutX="17.0" layoutY="119.0" text="Product Name:" AnchorPane.rightAnchor="140.0" />
+                                    <Label layoutX="52.0" layoutY="160.0" text="Durum:" AnchorPane.rightAnchor="140.0" />
+                                    <Button fx:id="productEkleme_ekleBTN" layoutX="30.0" layoutY="267.0" mnemonicParsing="false" onAction="#urunEklemeBTN" prefHeight="53.0" prefWidth="75.0" stylesheets="@../adminEmployeeArayuzu.css" text="✓⏐Ekle">
+                                       <styleClass>
+                                          <String fx:value="ekleBtn" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="productEkleme_güncelleBTN" layoutX="131.0" layoutY="266.0" mnemonicParsing="false" onAction="#urunGüncellemeBTN" prefHeight="54.0" prefWidth="99.0" styleClass="guncelle-Btn" stylesheets="@../adminEmployeeArayuzu.css" text="♻️⏐Güncelle" />
+                                    <Button fx:id="productEkleme_silBTN" layoutX="32.0" layoutY="337.0" mnemonicParsing="false" onAction="#urunSilBtn" prefHeight="53.0" prefWidth="71.0" stylesheets="@../adminEmployeeArayuzu.css" text="✘⏐Sil">
+                                       <styleClass>
+                                          <String fx:value="silBtn" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </Button>
+                                    <TextField fx:id="productEkleme_productID" layoutX="104.0" layoutY="30.0" prefHeight="26.0" prefWidth="126.0" styleClass="textfield" stylesheets="@../adminEmployeeArayuzu.css" />
+                                    <TextField fx:id="productEkleme_stok" layoutX="104.0" layoutY="71.0" prefHeight="26.0" prefWidth="126.0" styleClass="textfield" stylesheets="@../adminEmployeeArayuzu.css" />
+                                    <TextField fx:id="productEkleme_productName" layoutX="104.0" layoutY="114.0" prefHeight="26.0" prefWidth="126.0" styleClass="textfield" stylesheets="@../adminEmployeeArayuzu.css" />
+                                    <ComboBox fx:id="productEkleme_durum" layoutX="104.0" layoutY="155.0" onAction="#urunDurumBelirleme" prefHeight="26.0" prefWidth="126.0" promptText="Seçiniz" styleClass="combobox" stylesheets="@../adminEmployeeArayuzu.css" />
+                                    <Label layoutX="34.0" layoutY="203.0" text="Fiyat:" AnchorPane.rightAnchor="140.0" />
+                                    <TextField fx:id="productEkleme_price" layoutX="109.0" layoutY="198.0" prefHeight="26.0" prefWidth="126.0" styleClass="textfield" stylesheets="@../adminEmployeeArayuzu.css" AnchorPane.rightAnchor="7.199999" />
+                                    <Button fx:id="kaydetBtn" layoutX="79.0" layoutY="447.0" mnemonicParsing="false" onAction="#kaydetBtn" stylesheets="@../girisArayuzu.css" text="📥⏐Kaydet">
+                                       <styleClass>
+                                          <String fx:value="shadow" />
+                                          <String fx:value="kutu1" />
+                                       </styleClass></Button>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="263.0" layoutY="9.0" prefHeight="534.0" prefWidth="623.0" stylesheets="@../adminEmployeeArayuzu.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TextField fx:id="productEkleme_searcBTN" layoutX="37.0" layoutY="13.0" prefHeight="26.0" prefWidth="155.0" promptText="🔎Arama yap" styleClass="searchBtn" stylesheets="@../adminEmployeeArayuzu.css">
+                                       <font>
+                                          <Font size="76.0" />
+                                       </font>
+                                    </TextField>
+                                    <TableView fx:id="productEkleme_Tablo" layoutX="18.0" layoutY="56.0" onMouseClicked="#tablodanUrunSeçme" prefHeight="466.0" prefWidth="590.0" stylesheets="@../adminEmployeeArayuzu.css">
+                                       <columns>
+                                          <TableColumn fx:id="productEkleme_tablo_productID" prefWidth="110.40005493164062" text="Product ID" />
+                                          <TableColumn fx:id="productEkleme_tablo_stok" prefWidth="151.20001220703125" text="Stok" />
+                                          <TableColumn fx:id="productEkleme_tablo_productName" prefWidth="166.4000244140625" text="Product Name" />
+                                          <TableColumn fx:id="productEkleme_tablo_durum" prefWidth="86.4000244140625" text="Durum" />
+                                          <TableColumn fx:id="productEkleme_tablo_fiyat" prefWidth="72.7999267578125" text="Fiyat" />
+                                       </columns>
+                                    </TableView>
+                                    <Label layoutX="18.0" prefHeight="49.0" prefWidth="15.0" text="⏐">
+                                       <font>
+                                          <Font size="24.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

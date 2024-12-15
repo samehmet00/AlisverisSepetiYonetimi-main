@@ -1,0 +1,8 @@
+11,sdf,12313.0,12275,Satışta
+22,gfds,10.0,12345,Satıştan Kaldırıldı
+33,jhgfd,12313.0,0,Satışta
+44,araba,8000.0,5,Satışta
+11,sdf,12313.0,12273,Satışta
+22,gfds,10.0,12345,Satıştan Kaldırıldı
+33,jhgfd,12313.0,0,Satışta
+44,araba,8000.0,5,Satışta
