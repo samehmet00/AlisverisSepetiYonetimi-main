@@ -88,3 +88,8 @@
     -fx-background-color: #000 ,#266531;
 }
 
+.gri-form{
+    -fx-background-color: #909090;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .4px. 0px;
+}

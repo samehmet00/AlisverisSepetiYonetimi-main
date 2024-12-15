@@ -154,7 +154,7 @@ public class GirişEkranıController {
                     alert = new Alert(Alert.AlertType.CONFIRMATION);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Admin girişi başarılı");
+                    alert.setContentText("Yönetici girişi başarılı");
                     alert.showAndWait();
 
                     ProductStorage.urunOkuma();
@@ -187,7 +187,7 @@ public class GirişEkranıController {
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Admin girişi başarısız");
+                    alert.setContentText("Yönetici girişi başarısız!");
                     alert.showAndWait();
                 }
             }
@@ -208,7 +208,8 @@ public class GirişEkranıController {
                     alert.showAndWait();
 
                     ProductStorage.urunOkuma();
-//                    AdminEkranıController.müşteriEkranıProductSeçme();
+
+                    kullaniciAdiVerme.employee = employee_ID.getText();
 
                     admin_login.getScene().getWindow().hide();
 
@@ -233,7 +234,7 @@ public class GirişEkranıController {
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
-                    alert.setContentText("Kullanıcı girişi başarısız");
+                    alert.setContentText("Kullanıcı girişi başarısız!");
                     alert.showAndWait();
                 }
             }

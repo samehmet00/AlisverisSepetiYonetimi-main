@@ -134,6 +134,9 @@ public class MusteriEkraniController implements Initializable {
     @FXML
     private AnchorPane satınAlım;
 
+    @FXML
+    private TextField arama_musteri;
+
 
     private SpinnerValueFactory spinner;
 
@@ -725,6 +728,25 @@ public class MusteriEkraniController implements Initializable {
         // Toplam fiyatı Label üzerinde göster
         purchase_toplam.setText(String.format(toplam+"₺"));
         purchase_toplam1.setText(String.format(toplam+"₺"));
+    }
+
+    public void urunAramamusteri() {
+        String aramaMetni = arama_musteri.getText().toLowerCase();
+
+        if (aramaMetni.isEmpty()) {
+            purchase_tableview.setItems(müşteriProducts);
+        } else {
+            ObservableList<Product> filteredList = FXCollections.observableArrayList();
+
+            for (Product product : müşteriProducts) {
+                if (product.getName().toLowerCase().contains(aramaMetni) ||
+                        String.valueOf(product.getId()).contains(aramaMetni) ||
+                        product.getDurum().toLowerCase().contains(aramaMetni)) {
+                    filteredList.add(product);
+                }
+            }
+            purchase_tableview.setItems(filteredList);
+        }
     }
 
 

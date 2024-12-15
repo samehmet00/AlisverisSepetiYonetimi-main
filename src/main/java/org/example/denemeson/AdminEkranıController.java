@@ -397,6 +397,26 @@ public class AdminEkranıController implements Initializable {
         productEkleme_durum.setValue(null);;
     }
 
+    public void urunArama() {
+        String aramaMetni = productEkleme_searcBTN.getText().toLowerCase();
+
+        if (aramaMetni.isEmpty()) {
+            productEkleme_Tablo.setItems(productList);
+        } else {
+            ObservableList<Product> filteredList = FXCollections.observableArrayList();
+
+            for (Product product : productList) {
+                if (product.getName().toLowerCase().contains(aramaMetni) ||
+                        String.valueOf(product.getId()).contains(aramaMetni) ||
+                        product.getDurum().toLowerCase().contains(aramaMetni)) {
+                    filteredList.add(product);
+                }
+            }
+            productEkleme_Tablo.setItems(filteredList);
+        }
+    }
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tablodaGörüntüleme();

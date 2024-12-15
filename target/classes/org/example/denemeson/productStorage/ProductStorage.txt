@@ -1,5 +1,4 @@
-11,sdf,12313.0,12275,Satışta
-22,gfds,10.0,12345,Satıştan Kaldırıldı
-33,jhgfd,12313.0,0,Satıştan Kaldırıldı
-44,telefon,7000.0,30,Satışta
+11,araba,12313.0,12275,Satışta
+33,gfds,10.0,12345,Satıştan Kaldırıldı
+44,telefon,7000.0,29,Satışta
 55,kulaklık,4000.0,30,Satışta
