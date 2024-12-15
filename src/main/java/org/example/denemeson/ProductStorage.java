@@ -50,7 +50,7 @@ public class ProductStorage {
     }
 
     public static void txtTemizleme(){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:/Users/emirh/OneDrive/Masaüstü/DenemeSon/src/main/resources/org/example/denemeson/productStorage/ProductStorage.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/mehmetsa00/Documents/GitHub/AlisverisSepetiYonetimi-main/src/main/resources/org/example/denemeson/productStorage/ProductStorage.txt"))) {
 
         } catch (Exception e) {
             e.printStackTrace();

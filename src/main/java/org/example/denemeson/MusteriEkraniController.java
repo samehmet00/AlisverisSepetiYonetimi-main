@@ -192,21 +192,21 @@ public class MusteriEkraniController implements Initializable {
 
     public void tablodanUrunSeçme(){
 
-            Product prod = purchase_tableview.getSelectionModel().getSelectedItem();
-            int num = purchase_tableview.getSelectionModel().getSelectedIndex();
-            if((num-1) < -1){
-                return;
-            }
+        Product prod = purchase_tableview.getSelectionModel().getSelectedItem();
+        int num = purchase_tableview.getSelectionModel().getSelectedIndex();
+        if((num-1) < -1){
+            return;
+        }
 
-            purchase_ürünId.setText(String.valueOf(prod.getId()));
-            purchase_ürünId.setEditable(false);
-            purchase_ürünİsmi.setText(prod.getName());
-            purchase_ürünİsmi.setEditable(false);
+        purchase_ürünId.setText(String.valueOf(prod.getId()));
+        purchase_ürünId.setEditable(false);
+        purchase_ürünİsmi.setText(prod.getName());
+        purchase_ürünİsmi.setEditable(false);
 
-            int miktar = prod.getStock();
+        int miktar = prod.getStock();
 
-            spinner = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, miktar, 0);
-            purchase_miktar.setValueFactory(spinner);
+        spinner = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, miktar, 0);
+        purchase_miktar.setValueFactory(spinner);
 
 
     }
@@ -223,9 +223,28 @@ public class MusteriEkraniController implements Initializable {
         sepetÜrünİsmi.setText(prod.getName());
         sepetÜrünİsmi.setEditable(false);
 
-        int miktar = prod.getStock();
+        UrunKutusu işaretci = AdminEkranıController.veri.root;
 
-        fişUrunMiktar.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, miktar,miktar));
+        while (işaretci != null) {
+            if(işaretci.product.getId() == prod.getId()){
+                break;
+            }
+
+            if(işaretci.product.getId()>(prod.getId())){
+                işaretci = işaretci.sol;
+            }else{
+                işaretci = işaretci.sağ;
+            }
+        }
+
+        int anaVeriMiktar = işaretci.product.getStock();
+
+        int sepettekiMiktar = prod.getStock();
+
+
+        fişUrunMiktar.setValueFactory(
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, anaVeriMiktar, sepettekiMiktar)
+        );
     }
 
     VeriIşlemleri sepetVerisi = new VeriIşlemleri();
@@ -416,16 +435,25 @@ public class MusteriEkraniController implements Initializable {
 
     public void ekranDeğiş(ActionEvent event){
         if(event.getSource() == satınAlBTN){
+            if(sepet.isVisible()){
+                sepetTxtTemizleme();
+            } else if (satınAlım.isVisible()) {
+                textleriTemizle();
+            }
+
             sepet.setVisible(false);
             satınAlım.setVisible(true);
             anasayfaForm.setVisible(false);
-            satınAlBTN.setStyle("-fx-background-color:linear-gradient(to top right,#4336d7,#bab8d4)");
-            sepetBtn.setStyle("-fx-background-color:Transparent");
-            anasayfaBtn.setStyle("-fx-background-color:transparent");
             müşteriEkranıProductSeçme();
-            sepetTxtTemizleme();
-            textleriTemizle();
+
+
         }else if(event.getSource() == sepetBtn || event.getSource() == purchase_odeme){
+            if(sepet.isVisible()){
+                sepetTxtTemizleme();
+            } else if (satınAlım.isVisible()) {
+                textleriTemizle();
+            }
+
             sepet.setVisible(true);
             satınAlım.setVisible(false);
             anasayfaForm.setVisible(false);
@@ -436,85 +464,107 @@ public class MusteriEkraniController implements Initializable {
                 sepetBoş.setVisible(false);
                 sepetTablo.setVisible(true);
             }
-            sepetBtn.setStyle("-fx-background-color:linear-gradient(to top right,#4336d7,#bab8d4)");
-            satınAlBTN.setStyle("-fx-background-color:Transparent");
-            anasayfaBtn.setStyle(("-fx-background-color:transparent"));
             müşteriEkranıProductSeçme();
-            sepetTxtTemizleme();
-            textleriTemizle();
+
         } else if (event.getSource() == anasayfaBtn) {
+
+            if(sepet.isVisible()){
+                sepetTxtTemizleme();
+            } else if (satınAlım.isVisible()) {
+                textleriTemizle();
+            }
             sepet.setVisible(false);
             satınAlım.setVisible(false);
             anasayfaForm.setVisible(true);
-            sepetBtn.setStyle("-fx-background-color:Transparent");
-            satınAlBTN.setStyle("-fx-background-color:Transparent");
-            anasayfaBtn.setStyle(("-fx-background-color:linear-gradient(to top right,#4336d7,#bab8d4)"));
             müşteriEkranıProductSeçme();
-            sepetTxtTemizleme();
-            textleriTemizle();
 
-            
+
+
         }
 
     }
 
     public void sepetGüncelle() {
-        int arananId = Integer.parseInt(sepetÜrünId.getText());
-
-        UrunKutusu işaretci = sepetVerisi.root;
-        while (işaretci != null) {
-            if (işaretci.product.getId() == arananId) {
-                break;
-            }
-            if (işaretci.product.getId() > arananId) {
-                işaretci = işaretci.sol;
-            } else {
-                işaretci = işaretci.sağ;
-            }
-        }
-
-        UrunKutusu işaretci2 = AdminEkranıController.veri.root;
-        while (işaretci2 != null) {
-            if (işaretci2.product.getId() == arananId) {
-                break;
-            }
-            if (işaretci2.product.getId() > arananId) {
-                işaretci2 = işaretci2.sol;
-            } else {
-                işaretci2 = işaretci2.sağ;
-            }
-        }
-
-        int miktar = fişUrunMiktar.getValue();
-
-        if (miktar == işaretci.product.getStock()) {
-            sepetVerisi.root = sepetVerisi.urunSil(sepetVerisi.root,arananId);
-            işaretci2.product.setStock(işaretci2.product.getStock() + miktar);
-        } else {
-            işaretci2.product.setStock(işaretci2.product.getStock() + miktar);
-            işaretci.product.setStock(işaretci.product.getStock() - miktar);
-        }
-
-        sepetÜrünId.clear();
-        sepetÜrünİsmi.clear();
-        fişUrunMiktar.getValueFactory().setValue(0);
-
-        // Tabloyu yeniden güncelle
-        AdminEkranıController.ağacıDolaşma(sepetVerisi.root, sepetProductList, 0);
-        sepetGüncellemeMiktar(sepetVerisi.root, sepetProductList, 0);
-        purchase_tableview.refresh();
-        sepetTablo.refresh();
-        System.out.println(sepetProductList);
-
-        sepettablodaUrunGösterimi();
-        purchaseToplamGoster();
-        sepetUyarı();
-        if(sepetProductList.isEmpty()){
-            sepetBoş.setVisible(true);
-            sepetTablo.setVisible(false);
+        Alert alert;
+        if(sepetÜrünId.getText().isEmpty() || sepetÜrünİsmi.getText().isEmpty() ) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Lütfen bir ürün seçiniz");
+            alert.showAndWait();
         }else{
-            sepetBoş.setVisible(false);
-            sepetTablo.setVisible(true);
+            if(fişUrunMiktar.getValue()==0){
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Confirmation Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Lütfen Bir Miktar Seçiniz");
+                alert.showAndWait();
+            }else{
+                int arananId = Integer.parseInt(sepetÜrünId.getText());
+
+                UrunKutusu işaretci = sepetVerisi.root;
+                while (işaretci != null) {
+                    if (işaretci.product.getId() == arananId) {
+                        break;
+                    }
+                    if (işaretci.product.getId() > arananId) {
+                        işaretci = işaretci.sol;
+                    } else {
+                        işaretci = işaretci.sağ;
+                    }
+                }
+
+                UrunKutusu işaretci2 = AdminEkranıController.veri.root;
+                while (işaretci2 != null) {
+                    if (işaretci2.product.getId() == arananId) {
+                        break;
+                    }
+                    if (işaretci2.product.getId() > arananId) {
+                        işaretci2 = işaretci2.sol;
+                    } else {
+                        işaretci2 = işaretci2.sağ;
+                    }
+                }
+
+                int miktar = fişUrunMiktar.getValue();
+
+                if (miktar == 0) {
+                    int eklenecek = işaretci.product.getStock();
+                    sepetVerisi.root = sepetVerisi.urunSil(sepetVerisi.root,arananId);
+                    işaretci2.product.setStock(işaretci2.product.getStock() + eklenecek);
+                } else {
+                    int eklenecek = işaretci.product.getStock();
+                    int işlem =işaretci2.product.getStock() + (eklenecek-miktar);
+                    işaretci2.product.setStock(işlem);
+                    işaretci.product.setStock(miktar);
+                }
+
+                sepetÜrünId.clear();
+                sepetÜrünİsmi.clear();
+                fişUrunMiktar.getValueFactory().setValue(0);
+
+                // Tabloyu yeniden güncelle
+                AdminEkranıController.ağacıDolaşma(sepetVerisi.root, sepetProductList, 0);
+                sepetGüncellemeMiktar(sepetVerisi.root, sepetProductList, 0);
+                purchase_tableview.refresh();
+                sepetTablo.refresh();
+                System.out.println(sepetProductList);
+
+                sepettablodaUrunGösterimi();
+                purchaseToplamGoster();
+                sepetUyarı();
+                if(sepetProductList.isEmpty()){
+                    sepetBoş.setVisible(true);
+                    sepetTablo.setVisible(false);
+                }else{
+                    sepetBoş.setVisible(false);
+                    sepetTablo.setVisible(true);
+                }
+
+            }
+
+
+
         }
 
 
@@ -523,65 +573,72 @@ public class MusteriEkraniController implements Initializable {
     ProductStorage yazmaOkuma = new ProductStorage();
 
     public void sepetKaldırBtn(){
-        int arananId = Integer.parseInt(sepetÜrünId.getText());
-        int miktar = fişUrunMiktar.getValue();
-
-        UrunKutusu işaretci = sepetVerisi.root;
-        while (işaretci != null) {
-            if (işaretci.product.getId() == arananId) {
-                break;
-            }
-            if (işaretci.product.getId() > arananId) {
-                işaretci = işaretci.sol;
-            } else {
-                işaretci = işaretci.sağ;
-            }
-        }
-
-        UrunKutusu işaretci2 = AdminEkranıController.veri.root;
-        while (işaretci2 != null) {
-            if (işaretci2.product.getId() == arananId) {
-                break;
-            }
-            if (işaretci2.product.getId() > arananId) {
-                işaretci2 = işaretci2.sol;
-            } else {
-                işaretci2 = işaretci2.sağ;
-            }
-        }
-
-        sepetÜrünId.clear();
-        sepetÜrünİsmi.clear();
-        fişUrunMiktar.getValueFactory().setValue(0);
-
-
-        sepetVerisi.root = sepetVerisi.urunSil(sepetVerisi.root,arananId);
-        işaretci2.product.setStock(işaretci2.product.getStock() + miktar);
-
-        AdminEkranıController.ağacıDolaşma(sepetVerisi.root, sepetProductList, 0);
-        sepetGüncellemeMiktar(sepetVerisi.root, sepetProductList, 0);
-        purchase_tableview.refresh();
-        sepetTablo.refresh();
-        System.out.println(sepetProductList);
-
-        sepettablodaUrunGösterimi();
-        sepetUyarı();
-        purchaseToplamGoster();
-        if(sepetProductList.isEmpty()){
-            sepetBoş.setVisible(true);
-            sepetTablo.setVisible(false);
+        Alert alert;
+        if(sepetÜrünId.getText().isEmpty() || sepetÜrünİsmi.getText().isEmpty() ) {
+            alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Lütfen bir ürün seçiniz");
+            alert.showAndWait();
         }else{
-            sepetBoş.setVisible(false);
-            sepetTablo.setVisible(true);
+            int arananId = Integer.parseInt(sepetÜrünId.getText());
+            int miktar = fişUrunMiktar.getValue();
+
+            UrunKutusu işaretci = sepetVerisi.root;
+            while (işaretci != null) {
+                if (işaretci.product.getId() == arananId) {
+                    break;
+                }
+                if (işaretci.product.getId() > arananId) {
+                    işaretci = işaretci.sol;
+                } else {
+                    işaretci = işaretci.sağ;
+                }
+            }
+
+            UrunKutusu işaretci2 = AdminEkranıController.veri.root;
+            while (işaretci2 != null) {
+                if (işaretci2.product.getId() == arananId) {
+                    break;
+                }
+                if (işaretci2.product.getId() > arananId) {
+                    işaretci2 = işaretci2.sol;
+                } else {
+                    işaretci2 = işaretci2.sağ;
+                }
+            }
+
+            sepetÜrünId.clear();
+            sepetÜrünİsmi.clear();
+            fişUrunMiktar.getValueFactory().setValue(0);
+
+
+            sepetVerisi.root = sepetVerisi.urunSil(sepetVerisi.root,arananId);
+            işaretci2.product.setStock(işaretci2.product.getStock() + miktar);
+
+            AdminEkranıController.ağacıDolaşma(sepetVerisi.root, sepetProductList, 0);
+            sepetGüncellemeMiktar(sepetVerisi.root, sepetProductList, 0);
+            purchase_tableview.refresh();
+            sepetTablo.refresh();
+            System.out.println(sepetProductList);
+
+            sepettablodaUrunGösterimi();
+            sepetUyarı();
+            purchaseToplamGoster();
+            if(sepetProductList.isEmpty()){
+                sepetBoş.setVisible(true);
+                sepetTablo.setVisible(false);
+            }else{
+                sepetBoş.setVisible(false);
+                sepetTablo.setVisible(true);
+            }
         }
-
-
     }
 
     public void sepetTxtTemizleme(){
         sepetÜrünId.clear();
         sepetÜrünİsmi.clear();
-        fişUrunMiktar.getValueFactory().setValue(0);
+        fişUrunMiktar.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
 
     }
 
@@ -612,7 +669,7 @@ public class MusteriEkraniController implements Initializable {
             sepetGüncellemeMiktar(sepetVerisi.root, sepetProductList, 0);
             purchase_tableview.refresh();
             sepetTablo.refresh();
-            System.out.println(sepetProductList);
+
 
             sepettablodaUrunGösterimi();
             purchaseToplamGoster();

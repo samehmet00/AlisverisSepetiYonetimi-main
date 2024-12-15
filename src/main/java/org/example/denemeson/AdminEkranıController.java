@@ -106,34 +106,11 @@ public class AdminEkranıController implements Initializable {
 
     ProductStorage yazmaOkuma = new ProductStorage();
 
-    private String[] durumListe = {"Satışta","Satıştan Kaldırıldı"};
-
-//    public static void ürünDurumKontrolü(UrunKutusu node, ObservableList<Product> productList){
-//        if (node != null) {
-//            ürünDurumKontrolü(node.sol, productList);
-//            if(Objects.equals(node.product.getDurum(), "Satışta")){
-//                productList.add(node.product);
-//            }
-//            ürünDurumKontrolü(node.sağ, productList);
-//        }
-//    }
-//
-//    static ObservableList<Product> müşteriProducts = FXCollections.observableArrayList();
-//    public static void müşteriEkranıProductSeçme(){
-//        ürünDurumKontrolü(veri.root,müşteriProducts);
-//    }
-
-
-
+    ObservableList<String> durumlar = FXCollections.observableArrayList("Satışta","Satıştan Kaldırıldı");
 
     public void urunDurumBelirleme(){
-        List<String> lists = new ArrayList<>();
 
-        for(String durumlar:durumListe){
-            lists.add(durumlar);
-        }
-        ObservableList durumlarVeri = FXCollections.observableList(lists);
-        productEkleme_durum.setItems(durumlarVeri);
+        productEkleme_durum.setItems(durumlar);
 
     }
 
@@ -160,6 +137,7 @@ public class AdminEkranıController implements Initializable {
             alert.setContentText("Ürün Başarıyla Kaydedildi");
             alert.showAndWait();
             değişiklik = false;
+            textleriTemizle();
         }else{
             Alert alert;
             alert = new Alert(Alert.AlertType.INFORMATION);
@@ -193,7 +171,7 @@ public class AdminEkranıController implements Initializable {
                 ağacıDolaşma(veri.root,productList,0);
                 tablodaGörüntüleme();
                 değişiklik = true;
-
+                textleriTemizle();
 
 
             }
@@ -336,6 +314,9 @@ public class AdminEkranıController implements Initializable {
         }
         if (node != null) {
             ağacıDolaşma(node.sol, productList,i++);
+            if(node.product.getStock()==0){
+                node.product.setDurum("Satıştan Kaldırıldı");
+            }
             productList.add(node.product);
             ağacıDolaşma(node.sağ, productList,i++);
         }
@@ -384,24 +365,24 @@ public class AdminEkranıController implements Initializable {
 
 
 
-                    işaretci.product.setStock(Integer.parseInt(productEkleme_stok.getText()));
-                    işaretci.product.setPrice(Double.parseDouble(productEkleme_price.getText()));
-                    işaretci.product.setName(productEkleme_productName.getText());
-                    işaretci.product.setDurum((String)productEkleme_durum.getSelectionModel().getSelectedItem());
+                işaretci.product.setStock(Integer.parseInt(productEkleme_stok.getText()));
+                işaretci.product.setPrice(Double.parseDouble(productEkleme_price.getText()));
+                işaretci.product.setName(productEkleme_productName.getText());
+                işaretci.product.setDurum((String)productEkleme_durum.getSelectionModel().getSelectedItem());
 
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Ürün Başarıyla güncellendi");
-                    alert.showAndWait();
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Information Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Ürün Başarıyla güncellendi");
+                alert.showAndWait();
 
-                    ağacıDolaşma(veri.root,productList,0);
-                    tablodaGörüntüleme();
-                    değişiklik = true;
+                ağacıDolaşma(veri.root,productList,0);
+                tablodaGörüntüleme();
+                değişiklik = true;
 
 
 
-                }
+            }
 
         } catch (Exception e){
             e.printStackTrace();
@@ -422,6 +403,6 @@ public class AdminEkranıController implements Initializable {
         urunDurumBelirleme();
         adminAdıYazdirma();
 
-        
+
     }
 }
