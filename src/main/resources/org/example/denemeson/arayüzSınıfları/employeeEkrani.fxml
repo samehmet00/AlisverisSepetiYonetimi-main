@@ -43,7 +43,7 @@
                               <Font size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="purchase_musteriId" alignment="CENTER" layoutX="51.0" layoutY="121.0" text="ADMİN" textFill="WHITE">
+                        <Label fx:id="purchase_musteriId" alignment="CENTER" layoutX="33.0" layoutY="115.0" text="ADMİN" textFill="WHITE">
                            <font>
                               <Font size="30.0" />
                            </font>
@@ -89,7 +89,7 @@
                <center>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                      <children>
-                        <AnchorPane fx:id="satınAlım" layoutX="31.0" layoutY="-3.0" prefHeight="558.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
+                        <AnchorPane fx:id="satınAlım" layoutX="31.0" layoutY="-3.0" prefHeight="558.0" prefWidth="900.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
                            <children>
                               <AnchorPane layoutX="605.0" layoutY="12.0" prefHeight="519.0" prefWidth="279.0" stylesheets="@../adminEmployeeArayuzu.css" AnchorPane.leftAnchor="605.0">
                                  <styleClass>
@@ -138,7 +138,7 @@
                                     <String fx:value="shadow" />
                                  </styleClass>
                                  <children>
-                                    <TableView fx:id="purchase_tableview" layoutX="14.0" layoutY="9.0" onMouseClicked="#tablodanUrunSeçme" prefHeight="499.0" prefWidth="524.0">
+                                    <TableView fx:id="purchase_tableview" layoutX="14.0" layoutY="47.0" onMouseClicked="#tablodanUrunSeçme" prefHeight="461.0" prefWidth="524.0">
                                        <columns>
                                           <TableColumn fx:id="purchase_co_urunId" prefWidth="158.3427734375" text="Ürün ID" />
                                           <TableColumn fx:id="purchase_co_isim" prefWidth="159.1572265625" text="Ürün İsmi" />
@@ -146,6 +146,17 @@
                                           <TableColumn fx:id="purchase_co_fiyat" prefWidth="112.667236328125" text="Fiyat" />
                                        </columns>
                                     </TableView>
+                                    <TextField fx:id="arama_musteri" layoutX="32.0" layoutY="10.0" prefHeight="26.0" prefWidth="155.0" promptText="🔎Arama yap" styleClass="searchBtn" stylesheets="@../adminEmployeeArayuzu.css">
+                                       <font>
+                                          <Font size="76.0" />
+                                       </font>
+                                    </TextField>
+                                    <Label layoutX="14.0" layoutY="8.0" text="⏐">
+                                       <font>
+                                          <Font size="27.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="193.0" layoutY="11.0" mnemonicParsing="false" onAction="#urunAramamusteri" styleClass="shadow" stylesheets="@../adminEmployeeArayuzu.css" text="↵" />
                                  </children>
                               </AnchorPane>
                            </children>
@@ -214,11 +225,16 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="anasayfaForm" layoutY="-2.0" prefHeight="554.4" prefWidth="900.0" styleClass="sepetim-btn-default" stylesheets="@../adminEmployeeArayuzu.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="anasayfaForm" layoutY="-2.0" prefHeight="554.4" prefWidth="900.0" styleClass="gri-form" stylesheets="@../girisArayuzu.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                              <Label layoutX="200.0" layoutY="139.0" text="🛒⏐SUPER MARKET" textFill="WHITE">
+                              <Label layoutX="200.0" layoutY="139.0" text="🛒⏐SUPER MARKET">
                                  <font>
                                     <Font name="System Bold" size="55.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="277.0" layoutY="267.0" text="İYİ ALIŞVERİŞLER!" textFill="#009fff" underline="true">
+                                 <font>
+                                    <Font size="43.0" />
                                  </font>
                               </Label>
                            </children>

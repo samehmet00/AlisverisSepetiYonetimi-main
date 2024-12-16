@@ -246,7 +246,7 @@ public class MusteriEkraniController implements Initializable {
 
 
         fişUrunMiktar.setValueFactory(
-                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, anaVeriMiktar, sepettekiMiktar)
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(0, anaVeriMiktar+sepettekiMiktar, sepettekiMiktar)
         );
     }
 

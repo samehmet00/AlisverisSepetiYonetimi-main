@@ -1,4 +1,4 @@
-11,araba,12313.0,12275,Satışta
+11,araba,12313.0,12273,Satışta
 33,gfds,10.0,12345,Satıştan Kaldırıldı
-44,telefon,7000.0,29,Satışta
+44,telefon,7000.0,24,Satışta
 55,kulaklık,4000.0,30,Satışta
