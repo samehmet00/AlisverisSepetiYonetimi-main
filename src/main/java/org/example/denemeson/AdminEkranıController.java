@@ -99,6 +99,9 @@ public class AdminEkranıController implements Initializable {
     @FXML
     private Button çıkışBTN;
 
+    @FXML
+    private Label kaydetUnlem;
+
     private double x = 0;
     private double y = 0;
 
@@ -112,6 +115,10 @@ public class AdminEkranıController implements Initializable {
 
         productEkleme_durum.setItems(durumlar);
 
+    }
+
+    public void kaydetUyarı(){
+        kaydetUnlem.setVisible(true);
     }
 
     public void urunEklemeBTN(ActionEvent event) {
@@ -132,16 +139,17 @@ public class AdminEkranıController implements Initializable {
             yazmaOkuma.yazmaIslemiCalistir(veri.root);
             Alert alert;
             alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Message");
+            alert.setTitle("Bilgilendirici Mesaj");
             alert.setHeaderText(null);
             alert.setContentText("Ürün Başarıyla Kaydedildi");
             alert.showAndWait();
             değişiklik = false;
             textleriTemizle();
+            kaydetUnlem.setVisible(false);
         }else{
             Alert alert;
             alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Message");
+            alert.setTitle("Bilgilendirici Mesaj");
             alert.setHeaderText(null);
             alert.setContentText("Herhangi bir değişiklik yapılmadı");
             alert.showAndWait();
@@ -163,7 +171,7 @@ public class AdminEkranıController implements Initializable {
                 veri.root = veri.urunSil(veri.root,Integer.parseInt(productEkleme_productID.getText()));
 
                 alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
+                alert.setTitle("Bilgilendirici Mesaj");
                 alert.setHeaderText(null);
                 alert.setContentText("Ürün Başarıyla silindi");
                 alert.showAndWait();
@@ -172,6 +180,7 @@ public class AdminEkranıController implements Initializable {
                 tablodaGörüntüleme();
                 değişiklik = true;
                 textleriTemizle();
+                kaydetUyarı();
 
 
             }
@@ -181,39 +190,67 @@ public class AdminEkranıController implements Initializable {
         }
     }
 
-    public void tabloyaUrunEkleme(){
+    public void tabloyaUrunEkleme() {
         try {
             Alert alert;
-            //ürün ekleme verilerinin eksik olup olmadığını kontrol ediyoruz
-            if (productEkleme_productID.getText().isEmpty() || productEkleme_productName.getText().isEmpty() || productEkleme_stok.getText().isEmpty() || productEkleme_price.getText().isEmpty() || productEkleme_durum.getSelectionModel().getSelectedItem()==null) {
+
+            // Girişlerin eksiksiz doldurulduğunu kontrol et
+            if (productEkleme_productID.getText().isEmpty() ||
+                    productEkleme_productName.getText().isEmpty() ||
+                    productEkleme_stok.getText().isEmpty() ||
+                    productEkleme_price.getText().isEmpty() ||
+                    productEkleme_durum.getSelectionModel().getSelectedItem() == null) {
+
                 alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error Message");
+                alert.setTitle("ERROR Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Lütfen Tüm Alanları Doldurduğunuzdan Emin Olunuz");
+                alert.setContentText("Lütfen tüm alanları doldurduğunuzdan emin olunuz.");
                 alert.showAndWait();
-            }else{
-                if (idKontrol(Integer.parseInt(productEkleme_productID.getText()))){
-                    alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Seçilen ID önceden kayıtlı");
-                    alert.showAndWait();
-                }else{
-                    agacaUrunEkleme(Integer.parseInt(productEkleme_productID.getText()),productEkleme_productName.getText(),Double.parseDouble(productEkleme_price.getText()),Integer.parseInt(productEkleme_stok.getText()),(String)productEkleme_durum.getSelectionModel().getSelectedItem());
-                    ağacıDolaşma(veri.root, productList,0);
-
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Ürün Başarıyla Kaydedildi");
-                    alert.showAndWait();
-
-                    tablodaGörüntüleme();
-                }
-
-
+                return; // Eksik giriş varsa işlemi sonlandır
             }
-        }catch (Exception e){
+
+            // ID'nin önceden kayıtlı olup olmadığını kontrol et
+            int productID = Integer.parseInt(productEkleme_productID.getText());
+            if (idKontrol(productID)) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("ERROR Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Seçilen ID önceden kayıtlı.");
+                alert.showAndWait();
+                return; // ID zaten kayıtlıysa işlemi sonlandır
+            }
+
+            // Verileri ekleme işlemi
+            String productName = productEkleme_productName.getText();
+            double price = Double.parseDouble(productEkleme_price.getText());
+            int stock = Integer.parseInt(productEkleme_stok.getText());
+            String status = productEkleme_durum.getSelectionModel().getSelectedItem();
+
+            // Ürünü ağaca ekle
+            agacaUrunEkleme(productID, productName, price, stock, status);
+
+            // Ağacı dolaşarak ürün listesini güncelle
+            ağacıDolaşma(veri.root, productList, 0);
+
+            // Kullanıcıya başarı mesajı göster
+            alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Bilgilendirici Mesaj");
+            alert.setHeaderText(null);
+            alert.setContentText("Ürün başarıyla kaydedildi.");
+            alert.showAndWait();
+
+            // Tabloyu güncelle ve verileri kaydet
+            tablodaGörüntüleme();
+            kaydetUyarı();
+
+        } catch (NumberFormatException e) {
+            // Sayı formatı hatalarını yakala (örneğin, price veya stock yanlış girilmişse)
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Lütfen Tüm Alanları Gereken Şekilde Doldurunuz!!");
+            alert.showAndWait();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -239,46 +276,83 @@ public class AdminEkranıController implements Initializable {
     }
 
     public void geriÇıkış(){
-        try{
+        if(kaydetUnlem.isVisible()){
+            try {
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Bilgilendirici Mesaj");
-            alert.setHeaderText(null);
-            alert.setContentText("Çıkış Yapmak İstediğinden Emin Misin?");
+                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+                alert1.setTitle("Bilgilendirici Mesaj");
+                alert1.setHeaderText(null);
+                alert1.setContentText("Yapılan değişiklikler kaydedilmedi!!");
 
-            Optional<ButtonType> option = alert.showAndWait();
+                Optional<ButtonType> option1 = alert1.showAndWait();
 
-            if(option.get().equals(ButtonType.OK)){
+                if (option1.get().equals(ButtonType.OK)) {
 
-                geriÇıkış.getScene().getWindow().hide();
+                    geriÇıkış.getScene().getWindow().hide();
 
-                Parent root = FXMLLoader.load(getClass().getResource("arayüzSınıfları/girişEkranı.fxml"));
-                Stage stage = new Stage();
-                Scene scene = new Scene(root);
+                    Parent root = FXMLLoader.load(getClass().getResource("arayüzSınıfları/girişEkranı.fxml"));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
 
-                root.setOnMousePressed((MouseEvent event1) ->{
-                    x = event1.getSceneX();
-                    y = event1.getSceneY();
-                });
+                    root.setOnMousePressed((MouseEvent event1) -> {
+                        x = event1.getSceneX();
+                        y = event1.getSceneY();
+                    });
 
-                root.setOnMouseDragged((MouseEvent event1) ->{
-                    stage.setX(event1.getScreenX() - x);
-                    stage.setY(event1.getScreenY() - y);
-                });
+                    root.setOnMouseDragged((MouseEvent event1) -> {
+                        stage.setX(event1.getScreenX() - x);
+                        stage.setY(event1.getScreenY() - y);
+                    });
 
-                stage.initStyle(StageStyle.TRANSPARENT);
+                    stage.initStyle(StageStyle.TRANSPARENT);
 
-                stage.setScene(scene);
-                stage.show();;
+                    stage.setScene(scene);
+                    stage.show();
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+                    try {
 
-            }else return;
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Bilgilendirici Mesaj");
+                        alert.setHeaderText(null);
+                        alert.setContentText("Çıkış Yapmak İstediğinden Emin Misin?");
+
+                        Optional<ButtonType> option = alert.showAndWait();
+
+                        if (option.get().equals(ButtonType.OK)) {
+
+                            geriÇıkış.getScene().getWindow().hide();
+
+                            Parent root = FXMLLoader.load(getClass().getResource("arayüzSınıfları/girişEkranı.fxml"));
+                            Stage stage = new Stage();
+                            Scene scene = new Scene(root);
+
+                            root.setOnMousePressed((MouseEvent event1) -> {
+                                x = event1.getSceneX();
+                                y = event1.getSceneY();
+                            });
+
+                            root.setOnMouseDragged((MouseEvent event1) -> {
+                                stage.setX(event1.getScreenX() - x);
+                                stage.setY(event1.getScreenY() - y);
+                            });
+
+                            stage.initStyle(StageStyle.TRANSPARENT);
+
+                            stage.setScene(scene);
+                            stage.show();
+
+                        } else return;
 
 
-
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
 
     public void close(){
         System.exit(0);
@@ -371,7 +445,7 @@ public class AdminEkranıController implements Initializable {
                 işaretci.product.setDurum((String)productEkleme_durum.getSelectionModel().getSelectedItem());
 
                 alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Information Message");
+                alert.setTitle("Bilgilendirici Mesaj");
                 alert.setHeaderText(null);
                 alert.setContentText("Ürün Başarıyla güncellendi");
                 alert.showAndWait();
@@ -379,11 +453,19 @@ public class AdminEkranıController implements Initializable {
                 ağacıDolaşma(veri.root,productList,0);
                 tablodaGörüntüleme();
                 değişiklik = true;
+                kaydetUyarı();
 
 
 
             }
 
+        } catch (NumberFormatException e) {
+            // Sayı formatı hatalarını yakala (örneğin, price veya stock yanlış girilmişse)
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR Message");
+            alert.setHeaderText(null);
+            alert.setContentText("Lütfen Tüm Alanları Gereken Şekilde Doldurunuz!!");
+            alert.showAndWait();
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -414,6 +496,11 @@ public class AdminEkranıController implements Initializable {
             }
             productEkleme_Tablo.setItems(filteredList);
         }
+    }
+
+    public void urunAramaSil() {
+        productEkleme_searcBTN.setText("");
+        productEkleme_Tablo.setItems(productList);
     }
 
 

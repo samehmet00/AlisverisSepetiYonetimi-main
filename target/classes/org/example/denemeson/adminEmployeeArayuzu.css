@@ -69,10 +69,6 @@
     -fx-background-radius: 8px;
 }
 
-.kutu1{
-    -fx-background-color: linear-gradient(to right,#6d7ec9,#85d0ff);
-    -fx-background-radius: 5px;
-}
 
 .textfield{
     -fx-background-color: transparent;
@@ -111,8 +107,8 @@
     -fx-background-color: #67df4f;
 }
 
-.güncelleBtn{
-    -fx-background-color: #c59706;
+.kaydetBtn{
+    -fx-background-color: #6d7ec9;
     -fx-background-radius: 8px;
     -fx-cursor: hand;
     -fx-text-fill: #fff;
@@ -120,8 +116,8 @@
     -fx-font-family: Arial;
 }
 
-.güncelleBtn:hover{
-    -fx-background-color: #ffc500;
+.kaydetBtn:hover{
+    -fx-background-color: #7c90e4;
 }
 
 .silBtn{

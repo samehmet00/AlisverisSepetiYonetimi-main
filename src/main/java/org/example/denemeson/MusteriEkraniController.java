@@ -320,7 +320,7 @@ public class MusteriEkraniController implements Initializable {
 
 
                     alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information Message");
+                    alert.setTitle("Bilgilendirici Mesaj");
                     alert.setHeaderText(null);
                     alert.setContentText("Ürün Başarıyla Sepete Eklendi");
                     alert.showAndWait();
@@ -498,7 +498,7 @@ public class MusteriEkraniController implements Initializable {
         }else{
             if(fişUrunMiktar.getValue()==0){
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation Message");
+                alert.setTitle("Bilgilendirici Mesaj");
                 alert.setHeaderText(null);
                 alert.setContentText("Lütfen Bir Miktar Seçiniz");
                 alert.showAndWait();
@@ -659,7 +659,7 @@ public class MusteriEkraniController implements Initializable {
             sepetVerisi.root = null;
 
             alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Information Message");
+            alert.setTitle("Bilgilendirici Mesaj");
             alert.setHeaderText(null);
             alert.setContentText("Ödeme İşlemi Başarılı");
             alert.showAndWait();
@@ -747,6 +747,11 @@ public class MusteriEkraniController implements Initializable {
             }
             purchase_tableview.setItems(filteredList);
         }
+    }
+
+    public void urunAramaSil() {
+        arama_musteri.setText("");
+        purchase_tableview.setItems(müşteriProducts);
     }
 
 
