@@ -43,7 +43,7 @@
                               <Font name="System Bold" size="26.0" />
                            </font>
                         </Label>
-                        <Line endX="84.0" fill="BLACK" layoutX="99.0" layoutY="203.0" startX="-85.0" />
+                        <Line endX="95.0" fill="BLACK" layoutX="99.0" layoutY="203.0" startX="-99.0" />
                         <Button fx:id="adminArayüzü_solPencere_ürünEkle" layoutX="8.0" layoutY="242.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="180.0" styleClass="ekleUrun-btn-default" stylesheets="@../adminEmployeeArayuzu.css" text="📦 ⏐ Ürün Ekle" textFill="#187c90" />
                         <Button fx:id="geriÇıkış" layoutX="1.0" layoutY="526.0" mnemonicParsing="false" onAction="#geriÇıkış" prefHeight="25.0" prefWidth="37.0" stylesheets="@../adminEmployeeArayuzu.css" text="↵">
                            <font>
@@ -102,11 +102,13 @@
                                     <ComboBox fx:id="productEkleme_durum" layoutX="104.0" layoutY="155.0" onAction="#urunDurumBelirleme" prefHeight="26.0" prefWidth="126.0" promptText="Seçiniz" styleClass="combobox" stylesheets="@../adminEmployeeArayuzu.css" />
                                     <Label layoutX="34.0" layoutY="203.0" text="Fiyat:" AnchorPane.rightAnchor="140.0" />
                                     <TextField fx:id="productEkleme_price" layoutX="109.0" layoutY="198.0" prefHeight="26.0" prefWidth="126.0" styleClass="textfield" stylesheets="@../adminEmployeeArayuzu.css" AnchorPane.rightAnchor="7.199999" />
-                                    <Button fx:id="kaydetBtn" layoutX="79.0" layoutY="447.0" mnemonicParsing="false" onAction="#kaydetBtn" stylesheets="@../girisArayuzu.css" text="📥⏐Kaydet">
-                                       <styleClass>
-                                          <String fx:value="shadow" />
-                                          <String fx:value="kutu1" />
-                                       </styleClass></Button>
+                                    <Button fx:id="kaydetBtn" layoutX="79.0" layoutY="442.0" mnemonicParsing="false" onAction="#kaydetBtn" prefHeight="30.0" prefWidth="98.0" styleClass="kaydetBtn" stylesheets="@../adminEmployeeArayuzu.css" text="📥⏐Kaydet " textFill="WHITE" />
+                                    <Label fx:id="kaydetUnlem" layoutX="166.0" layoutY="439.0" text="!" textFill="RED" visible="false">
+                                       <font>
+                                          <Font size="31.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="8.0" layoutY="241.0" text="❗️Ürün ID'nin uzunluğu 3 olmalıdır." />
                                  </children>
                               </AnchorPane>
                               <AnchorPane layoutX="263.0" layoutY="9.0" prefHeight="534.0" prefWidth="623.0" stylesheets="@../adminEmployeeArayuzu.css">
@@ -135,6 +137,7 @@
                                        </font>
                                     </Label>
                                     <Button layoutX="199.0" layoutY="14.0" mnemonicParsing="false" onAction="#urunArama" styleClass="shadow" stylesheets="@../adminEmployeeArayuzu.css" text="↵" />
+                                    <Button fx:id="aramaSil" layoutX="229.0" layoutY="14.0" mnemonicParsing="false" onAction="#urunAramaSil" styleClass="shadow" stylesheets="@../adminEmployeeArayuzu.css" text="❌" visible="false" />
                                  </children>
                               </AnchorPane>
                            </children>

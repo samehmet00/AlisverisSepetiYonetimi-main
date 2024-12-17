@@ -151,8 +151,8 @@ public class GirişEkranıController {
         try {
             if (event.getSource() == admin_login) {
                 if (loginManager.adminDoğrulama(admin_username.getText(), admin_password.getText())) {
-                    alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Error Message");
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Bilgilendirici Mesaj");
                     alert.setHeaderText(null);
                     alert.setContentText("Yönetici girişi başarılı");
                     alert.showAndWait();
@@ -201,8 +201,8 @@ public class GirişEkranıController {
         try {
             if (event.getSource() == employee_login) {
                 if (loginManager.employeeDoğrulama(employee_ID.getText(), employee_password.getText())) {
-                    alert = new Alert(Alert.AlertType.CONFIRMATION);
-                    alert.setTitle("Error Message");
+                    alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Bilgilendirici Mesaj");
                     alert.setHeaderText(null);
                     alert.setContentText("Kullanıcı girişi başarılı");
                     alert.showAndWait();
@@ -313,8 +313,8 @@ public class GirişEkranıController {
 
         }else{
             if(loginManager.employeeKullanıcıEkle(kullanıcıOluşturma_Adı.getText(),KullanıcıOlşturma_Şifre.getText(),KullanıcıOlşturma_FavoriRenginiz.getValue())){
-                alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Error Message");
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Bilgilendirici Mesaj");
                 alert.setHeaderText(null);
                 alert.setContentText("Kullanıcı Kaydı Başarılı");
                 alert.showAndWait();
@@ -345,8 +345,8 @@ public class GirişEkranıController {
 
         }else{
             if(loginManager.adminKullanıcıEkle(AdminOluşturma_Adı.getText(),AdminOlşturma_Şifre.getText(),AdminOlşturma_FavoriRenginiz.getValue())){
-                alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Error Message");
+                alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Bilgilendirici Mesaj");
                 alert.setHeaderText(null);
                 alert.setContentText("Admin Kaydı Başarılı");
                 alert.showAndWait();

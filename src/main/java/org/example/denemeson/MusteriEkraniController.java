@@ -137,6 +137,9 @@ public class MusteriEkraniController implements Initializable {
     @FXML
     private TextField arama_musteri;
 
+    @FXML
+    private Button aramaSil;
+
 
     private SpinnerValueFactory spinner;
 
@@ -379,7 +382,7 @@ public class MusteriEkraniController implements Initializable {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error Mesaj");
                 alert.setHeaderText(null);
-                alert.setContentText("Sepetinizde Ürünler Var");
+                alert.setContentText("Sepetinizde Ürünler Var!!");
                 alert.showAndWait();
             }else{
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -427,8 +430,20 @@ public class MusteriEkraniController implements Initializable {
         }
     }
 
-    public void close(){
-        System.exit(0);
+    public void close() {
+        if (sepetÜnlem.isVisible()) {
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Error Message");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Sepetinizde Ürünler Var!!");
+
+            Optional<ButtonType> option1 = alert1.showAndWait();
+
+            if (option1.get().equals(ButtonType.OK)) {
+                return;
+            }
+        }
+            System.exit(0);
     }
 
     public void minimize(){
@@ -735,6 +750,7 @@ public class MusteriEkraniController implements Initializable {
 
         if (aramaMetni.isEmpty()) {
             purchase_tableview.setItems(müşteriProducts);
+            aramaSil.setVisible(false);
         } else {
             ObservableList<Product> filteredList = FXCollections.observableArrayList();
 
@@ -746,12 +762,14 @@ public class MusteriEkraniController implements Initializable {
                 }
             }
             purchase_tableview.setItems(filteredList);
+            aramaSil.setVisible(true);
         }
     }
 
     public void urunAramaSil() {
         arama_musteri.setText("");
         purchase_tableview.setItems(müşteriProducts);
+        aramaSil.setVisible(false);
     }
 
 

@@ -102,6 +102,9 @@ public class AdminEkranıController implements Initializable {
     @FXML
     private Label kaydetUnlem;
 
+    @FXML
+    private Button aramaSil;
+
     private double x = 0;
     private double y = 0;
 
@@ -125,7 +128,6 @@ public class AdminEkranıController implements Initializable {
         try {
             if (event.getSource() == productEkleme_ekleBTN) {
                 tabloyaUrunEkleme();
-                textleriTemizle();
                 değişiklik = true;
 
             }
@@ -209,6 +211,17 @@ public class AdminEkranıController implements Initializable {
                 return; // Eksik giriş varsa işlemi sonlandır
             }
 
+            // ID uzunluğunu kontrol et
+            String productIDString = productEkleme_productID.getText();
+            if (productIDString.length() != 3) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("ERROR Message");
+                alert.setHeaderText(null);
+                alert.setContentText("Ürün ID'si 3 karakter uzunluğunda olmalıdır.");
+                alert.showAndWait();
+                return; // Hatalı uzunlukta ID varsa işlemi sonlandır
+            }
+
             // ID'nin önceden kayıtlı olup olmadığını kontrol et
             int productID = Integer.parseInt(productEkleme_productID.getText());
             if (idKontrol(productID)) {
@@ -238,6 +251,7 @@ public class AdminEkranıController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Ürün başarıyla kaydedildi.");
             alert.showAndWait();
+            textleriTemizle();
 
             // Tabloyu güncelle ve verileri kaydet
             tablodaGörüntüleme();
@@ -279,35 +293,15 @@ public class AdminEkranıController implements Initializable {
         if(kaydetUnlem.isVisible()){
             try {
 
-                Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-                alert1.setTitle("Bilgilendirici Mesaj");
+                Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                alert1.setTitle("Error Message");
                 alert1.setHeaderText(null);
                 alert1.setContentText("Yapılan değişiklikler kaydedilmedi!!");
 
                 Optional<ButtonType> option1 = alert1.showAndWait();
 
                 if (option1.get().equals(ButtonType.OK)) {
-
-                    geriÇıkış.getScene().getWindow().hide();
-
-                    Parent root = FXMLLoader.load(getClass().getResource("arayüzSınıfları/girişEkranı.fxml"));
-                    Stage stage = new Stage();
-                    Scene scene = new Scene(root);
-
-                    root.setOnMousePressed((MouseEvent event1) -> {
-                        x = event1.getSceneX();
-                        y = event1.getSceneY();
-                    });
-
-                    root.setOnMouseDragged((MouseEvent event1) -> {
-                        stage.setX(event1.getScreenX() - x);
-                        stage.setY(event1.getScreenY() - y);
-                    });
-
-                    stage.initStyle(StageStyle.TRANSPARENT);
-
-                    stage.setScene(scene);
-                    stage.show();
+                    return;
                 }
             }catch (Exception e) {
                 e.printStackTrace();
@@ -355,8 +349,21 @@ public class AdminEkranıController implements Initializable {
             }
 
     public void close(){
+        if (kaydetUnlem.isVisible()) {
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            alert1.setTitle("Error Message");
+            alert1.setHeaderText(null);
+            alert1.setContentText("Yapılan değişiklikler kaydedilmedi!!");
+
+            Optional<ButtonType> option1 = alert1.showAndWait();
+
+            if (option1.get().equals(ButtonType.OK)) {
+                return;
+            }
+        }
         System.exit(0);
     }
+
 
     public void aşağıAl(){
         Stage stage = (Stage)adminMain_Form.getScene().getWindow();
@@ -454,6 +461,7 @@ public class AdminEkranıController implements Initializable {
                 tablodaGörüntüleme();
                 değişiklik = true;
                 kaydetUyarı();
+                textleriTemizle();
 
 
 
@@ -484,6 +492,7 @@ public class AdminEkranıController implements Initializable {
 
         if (aramaMetni.isEmpty()) {
             productEkleme_Tablo.setItems(productList);
+            aramaSil.setVisible(false);
         } else {
             ObservableList<Product> filteredList = FXCollections.observableArrayList();
 
@@ -494,6 +503,7 @@ public class AdminEkranıController implements Initializable {
                     filteredList.add(product);
                 }
             }
+            aramaSil.setVisible(true);
             productEkleme_Tablo.setItems(filteredList);
         }
     }
@@ -501,6 +511,7 @@ public class AdminEkranıController implements Initializable {
     public void urunAramaSil() {
         productEkleme_searcBTN.setText("");
         productEkleme_Tablo.setItems(productList);
+        aramaSil.setVisible(false);
     }
 
 
