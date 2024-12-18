@@ -1,4 +1,8 @@
-101,telefon,8000.0,500,Satışta
-102,kulaklık,700.0,40,Satışta
+101,telefon,8000.0,491,Satışta
+102,kulaklık,700.0,36,Satışta
 103,telefon,7000.0,0,Satıştan Kaldırıldı
-104,mouse,4000.0,28,Satışta
+104,mouse,4000.0,23,Satışta
+105,çanta,300.0,18,Satışta
+106,monitör,1200.0,23,Satışta
+107,klavye,400.0,25,Satışta
+999,mahmut,1.2345677777777E13,40,Satışta

@@ -1,95 +1,94 @@
-.left-form{
-    -fx-background-color: linear-gradient(to top right,#060c63,#9598bf);
+.left-form {
+    -fx-background-color: linear-gradient(to top right, #060c63, #9598bf);
     -fx-border-color: #000;
-    -fx-border-width: .4px 0px .4px .4px;
+    -fx-border-width: 0.4px 0px 0.4px 0.4px;
 }
 
-.right-form{
+.right-form {
     -fx-background-color: #fff;
     -fx-border-color: #000;
-    -fx-border-width: .4px .4px .4px. 0px;
+    -fx-border-width: 0.4px 0.4px 0.4px 0px;
 }
 
-.text-field{
-    -fx-background-color: linear-gradient(to bottom right,#efefef,#eee,#ddd);
+.text-field {
+    -fx-background-color: linear-gradient(to bottom right, #efefef, #eee, #ddd);
     -fx-background-radius: 8px;
     -fx-border-color: #000;
-    -fx-border-width: 0px 0px .8px 0px;
+    -fx-border-width: 0px 0px 0.8px 0px;
     -fx-font-family: "Tahoma";
     -fx-font-size: 13px;
     -fx-border-radius: 8px;
 }
 
-.text-field:focused{
+.text-field:focused {
     -fx-background-color: #efefef;
-    -fx-border-width: 0px 0px 1.8px 0pc;
+    -fx-border-width: 0px 0px 1.8px 0px; /* Corrected typo '0pc' to '0px' */
 }
 
-.login-btn{
-    -fx-background-color: linear-gradient(to bottom,#000000, #0d0c0c);
+.login-btn {
+    -fx-background-color: linear-gradient(to bottom, #000000, #0d0c0c);
     -fx-background-radius: 10px;
     -fx-text-fill: #fff;
     -fx-font-family: Arial;
     -fx-font-size: 14px;
 }
 
-.login-btn:hover{
-    -fx-background-color: #000 ,#282626;
+.login-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #000, #282626); /* Fixed invalid gradient syntax */
 }
 
-
-.close{
+.close {
     -fx-background-color: transparent;
     -fx-cursor: hand;
 }
 
-.close:hover{
+.close:hover {
     -fx-background-color: #cf1c22;
 }
 
-.hyperlink{
-    -fx-boder-color: transparent;
+.hyperlink {
+    -fx-border-color: transparent; /* Fixed typo '-fx-boder-color' to '-fx-border-color' */
     -fx-font-family: Tahoma;
     -fx-font-size: 14px;
     -fx-text-fill: #060c63;
 }
 
-.hyperlink:hover{
-    -fx-text-fill: #000
+.hyperlink:hover {
+    -fx-text-fill: #000;
 }
 
-.black-form{
-    -fx-background-color: linear-gradient(to top right,#ffffff,#000000);
+.black-form {
+    -fx-background-color: linear-gradient(to top right, #ffffff, #000000);
     -fx-border-color: #000;
-    -fx-border-width: .0px .0px .0px. 0px;
+    -fx-border-width: 0px 0px 0px 0px;
 }
 
-.yeni-form{
-    -fx-background-color: linear-gradient(to top right,#ffffff,#8d8888);
+.yeni-form {
+    -fx-background-color: linear-gradient(to top right, #ffffff, #8d8888);
     -fx-border-color: #000;
-    -fx-border-width: .4px 0px .4px .4px;
+    -fx-border-width: 0.4px 0px 0.4px 0.4px;
 }
 
-.green-form{
-    -fx-background-color: linear-gradient(to top right,#ffffff,#112c16);
+.green-form {
+    -fx-background-color: linear-gradient(to top right, #ffffff, #112c16);
     -fx-border-color: #000;
-    -fx-border-width: .0px .0px .0px. 0px;
+    -fx-border-width: 0px 0px 0px 0px;
 }
 
-.elogin-btn{
-    -fx-background-color: linear-gradient(to bottom,#1f5128, #112c16);
+.elogin-btn {
+    -fx-background-color: linear-gradient(to bottom, #1f5128, #112c16);
     -fx-background-radius: 10px;
     -fx-text-fill: #fff;
     -fx-font-family: Arial;
     -fx-font-size: 14px;
 }
 
-.elogin-btn:hover{
-    -fx-background-color: #000 ,#266531;
+.elogin-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #000, #266531); /* Fixed invalid gradient syntax */
 }
 
-.gri-form{
+.gri-form {
     -fx-background-color: #909090;
     -fx-border-color: #000;
-    -fx-border-width: .4px .4px .4px. 0px;
+    -fx-border-width: 0.4px 0.4px 0.4px 0px;
 }

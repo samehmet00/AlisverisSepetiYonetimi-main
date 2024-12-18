@@ -168,6 +168,7 @@ public class MusteriEkraniController implements Initializable {
                     productList.add(node.product);
                 }
             }
+            ürünDurumKontrolü(node.sağ, productList);
         }
     }
 
@@ -332,7 +333,7 @@ public class MusteriEkraniController implements Initializable {
 
 
                     purchase_tableview.refresh();
-                    tablodaUrunGösterimi();
+//                    tablodaUrunGösterimi();
                     purchaseToplamGoster();
                     sepetUyarı();
                 }
@@ -511,7 +512,7 @@ public class MusteriEkraniController implements Initializable {
             alert.setContentText("Lütfen bir ürün seçiniz");
             alert.showAndWait();
         }else{
-            if(fişUrunMiktar.getValue()==0){
+            if(fişUrunMiktar.getValue()==-1){
                 alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Bilgilendirici Mesaj");
                 alert.setHeaderText(null);
@@ -566,7 +567,7 @@ public class MusteriEkraniController implements Initializable {
                 sepetGüncellemeMiktar(sepetVerisi.root, sepetProductList, 0);
                 purchase_tableview.refresh();
                 sepetTablo.refresh();
-                System.out.println(sepetProductList);
+
 
                 sepettablodaUrunGösterimi();
                 purchaseToplamGoster();
@@ -660,17 +661,15 @@ public class MusteriEkraniController implements Initializable {
 
     }
 
-    public void ödemeBtn(){
+    public void ödemeBtn() {
         Alert alert;
-        if(sepetProductList.isEmpty()){
-
+        if (sepetProductList.isEmpty()) {
             alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error Message");
             alert.setHeaderText(null);
             alert.setContentText("Sepet Boş");
             alert.showAndWait();
-        }else{
-
+        } else {
             sepetVerisi.root = null;
 
             alert = new Alert(Alert.AlertType.INFORMATION);
@@ -681,6 +680,11 @@ public class MusteriEkraniController implements Initializable {
 
             sepetÜrünId.clear();
             sepetÜrünİsmi.clear();
+
+            // Spinner için ValueFactory kontrolü
+            if (fişUrunMiktar.getValueFactory() == null) {
+                fişUrunMiktar.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100, 0));
+            }
             fişUrunMiktar.getValueFactory().setValue(0);
 
             AdminEkranıController.ağacıDolaşma(sepetVerisi.root, sepetProductList, 0);
@@ -688,22 +692,20 @@ public class MusteriEkraniController implements Initializable {
             purchase_tableview.refresh();
             sepetTablo.refresh();
 
-
             sepettablodaUrunGösterimi();
             purchaseToplamGoster();
             yazmaOkuma.yazmaIslemiCalistir(AdminEkranıController.veri.root);
             sepetUyarı();
-            if(sepetProductList.isEmpty()){
+            if (sepetProductList.isEmpty()) {
                 sepetBoş.setVisible(true);
                 sepetTablo.setVisible(false);
-            }else{
+            } else {
                 sepetBoş.setVisible(false);
                 sepetTablo.setVisible(true);
             }
-
-
         }
     }
+
 
 
 
