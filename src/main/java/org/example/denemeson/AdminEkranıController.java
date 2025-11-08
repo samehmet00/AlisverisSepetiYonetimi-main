@@ -213,14 +213,16 @@ public class AdminEkranıController implements Initializable {
 
             // ID uzunluğunu kontrol et
             String productIDString = productEkleme_productID.getText();
-            if (productIDString.length() != 3) {
+            // Uzunluk 3 olmalı ve ilk karakter '-' olmamalı
+            if (productIDString.length() != 3 || productIDString.charAt(0) == '-') {
                 alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("ERROR Message");
                 alert.setHeaderText(null);
-                alert.setContentText("Ürün ID'si 3 karakter uzunluğunda olmalıdır.");
+                alert.setContentText("Ürün ID'si 3 karakter uzunluğunda olmalı ve '-' ile başlamamalıdır.");
                 alert.showAndWait();
-                return; // Hatalı uzunlukta ID varsa işlemi sonlandır
+                return; // Hatalı ID varsa işlemi sonlandır
             }
+
 
             // ID'nin önceden kayıtlı olup olmadığını kontrol et
             int productID = Integer.parseInt(productEkleme_productID.getText());

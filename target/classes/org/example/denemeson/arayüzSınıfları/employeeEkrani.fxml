@@ -50,7 +50,7 @@
                               <Font size="30.0" />
                            </font>
                         </Label>
-                        <Button fx:id="satınAlBTN" layoutX="10.0" layoutY="271.0" mnemonicParsing="false" onAction="#ekranDeğiş" prefHeight="35.0" prefWidth="180.0" styleClass="satinal-btn-default" stylesheets="@../adminEmployeeArayuzu.css" text="🛍 ⏐ Satın-Al" textFill="WHITE" AnchorPane.leftAnchor="10.0">
+                        <Button fx:id="satınAlBTN" layoutX="10.0" layoutY="271.0" mnemonicParsing="false" onAction="#ekranDeğiş" prefHeight="35.0" prefWidth="180.0" styleClass="nav-btn-default" stylesheets="@../adminEmployeeArayuzu.css" text="🛍 ⏐ Satın-Al" textFill="WHITE" AnchorPane.leftAnchor="10.0">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font></Button>
@@ -245,7 +245,7 @@
                                     <Font size="16.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="354.0" layoutY="42.0" text="SÜPERMARKET ANASAYFASI" textFill="#970202" underline="true">
+                              <Label layoutX="358.0" layoutY="42.0" text="          SÜPERMARKET " textFill="#970202">
                                  <font>
                                     <Font size="19.0" />
                                  </font>
