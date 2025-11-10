@@ -1,29 +1,40 @@
+📱 Uygulama Ekran Görüntüleri
+
+Aşağıda uygulamanın farklı bölümlerine ait ekran görüntüleri ve kısa açıklamaları yer almaktadır.
+Her bölüm hem kullanıcı hem yönetici tarafını açıkça göstermektedir.
+
 🧍‍♂️ 1. Müşteri Giriş Ekranı
-Kullanıcıların sisteme giriş yapabildiği basit ve anlaşılır giriş arayüzü.
 
-<img width="800" height="560" alt="Ekran Resmi 2025-11-10 12 36 11" src="https://github.com/user-attachments/assets/5f10be5f-dcbf-4b3c-959b-ee437032c2ad" />
+Kullanıcıların sisteme giriş yapabildiği sade ve anlaşılır arayüz.
+Giriş bilgileri doğrulandıktan sonra müşteri paneline yönlendirilir.
 
+<p align="center"> <img width="800" alt="Müşteri Giriş Ekranı" src="https://github.com/user-attachments/assets/5f10be5f-dcbf-4b3c-959b-ee437032c2ad" /> </p>
 📝 2. Müşteri Kayıt Ekranı
-Yeni kullanıcıların hesap oluşturabildiği kayıt sayfası.
 
-<img width="799" height="562" alt="Ekran Resmi 2025-11-10 12 36 48" src="https://github.com/user-attachments/assets/c045bd37-4c18-481c-b618-5c70ecaf17ef" />
+Yeni kullanıcıların sisteme kolayca kayıt olabildiği ekran.
 
+<p align="center"> <img width="800" alt="Müşteri Kayıt Ekranı" src="https://github.com/user-attachments/assets/c045bd37-4c18-481c-b618-5c70ecaf17ef" /> </p>
 👨‍💼 3. Yönetici Giriş Ekranı
-Yöneticilerin sisteme özel panel üzerinden giriş yapabildiği ekran.
 
-<img width="800" height="560" alt="Ekran Resmi 2025-11-10 12 37 15" src="https://github.com/user-attachments/assets/e742039b-baab-4699-b6c1-d92f462c3e87" />
+Yöneticilerin özel yetkilere sahip giriş yapabildiği panel.
+Bu ekran üzerinden yönetici doğrulaması yapılır.
 
+<p align="center"> <img width="800" alt="Yönetici Giriş Ekranı" src="https://github.com/user-attachments/assets/e742039b-baab-4699-b6c1-d92f462c3e87" /> </p>
 🛍️ 4. Müşteri Sayfası
-Kullanıcının ürünleri görüntüleyip sepete ekleyebildiği ana alışveriş sayfası.
 
-<img width="1099" height="600" alt="Ekran Resmi 2025-11-10 12 37 53" src="https://github.com/user-attachments/assets/431af11d-6462-475b-a613-833f44baa7be" />
+Kullanıcıların ürünleri görüntüleyip sepete ekleyebildiği ana alışveriş sayfası.
+Modern tasarımı ve düzenli ürün kartlarıyla sezgisel kullanım sağlar.
 
+<p align="center"> <img width="1000" alt="Müşteri Sayfası" src="https://github.com/user-attachments/assets/431af11d-6462-475b-a613-833f44baa7be" /> </p>
 🧺 5. Müşteri Sepeti
-Kullanıcının seçtiği ürünleri görüntüleyip toplam tutarı görebildiği sepet ekranı.
 
-<img width="1099" height="600" alt="Ekran Resmi 2025-11-10 12 38 36" src="https://github.com/user-attachments/assets/2fceed08-8e6a-486f-8844-c1ebf7e9947f" />
+Kullanıcıların seçtiği ürünleri görüntüleyip toplam tutarı görebildiği ekran.
+Ürün miktarlarını güncelleme ve sepeti onaylama seçenekleri sunar.
 
+<p align="center"> <img width="1000" alt="Müşteri Sepeti" src="https://github.com/user-attachments/assets/2fceed08-8e6a-486f-8844-c1ebf7e9947f" /> </p>
 🧾 6. Yönetici Sayfası
-Yöneticilerin ürün ekleme, silme ve stok yönetimi yapabildiği yönetim paneli.
 
-<img width="1099" height="600" alt="Ekran Resmi 2025-11-10 12 40 50" src="https://github.com/user-attachments/assets/93a41bc4-0a03-4659-93e0-f1665022401c" />
+Yöneticilerin ürün ekleme, silme ve stok güncelleme işlemlerini yaptığı panel.
+Uygulamanın yönetim kısmına ait tüm işlevler bu sayfada toplanmıştır.
+
+<p align="center"> <img width="1000" alt="Yönetici Sayfası" src="https://github.com/user-attachments/assets/93a41bc4-0a03-4659-93e0-f1665022401c" /> </p>
